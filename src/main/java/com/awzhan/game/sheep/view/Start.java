@@ -9,7 +9,6 @@ public class Start extends JFrame {
         this.setSize(400, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setVisible(true);
     }
 
