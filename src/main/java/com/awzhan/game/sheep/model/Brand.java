@@ -55,7 +55,7 @@ public class Brand extends Component {
 
     @Override
     public void paint(Graphics graphics) {
-        final Image selected = isGray ? grayImage : image;
-        graphics.drawImage(selected, x, y, null);
+        final Image selectedImage = isGray ? grayImage : image;
+        graphics.drawImage(selectedImage, x, y, null);
     }
 }
