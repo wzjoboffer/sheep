@@ -1,5 +1,6 @@
 package com.awzhan.game.sheep.model;
 
+import com.awzhan.game.sheep.ServiceConstant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,6 @@ import java.net.URL;
 @Getter
 public class Brand extends Component {
     private static final String IMAGE_PATH = "images/";
-    private static final String PNG_EXTENSION = ".png";
 
     private final String name;
 
@@ -60,7 +60,7 @@ public class Brand extends Component {
 
     private static Image getImage(final String name, final boolean isGray) {
         final String filename = isGray ? name + "_gray" : name;
-        final URL imageUrl = Brand.class.getClassLoader().getResource(IMAGE_PATH + filename + PNG_EXTENSION);
+        final URL imageUrl = Brand.class.getClassLoader().getResource(IMAGE_PATH + filename + ServiceConstant.PNG_EXT);
         return Toolkit.getDefaultToolkit().getImage(imageUrl);
     }
 

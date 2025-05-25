@@ -1,7 +1,9 @@
 package com.awzhan.game.sheep.util;
 
+import com.awzhan.game.sheep.ServiceConstant;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -56,16 +58,15 @@ public class ImageUtils {
     }
 
     private static String getGrayImageFilename(final String srcImagePath) {
-        int idx = srcImagePath.lastIndexOf(".");
-        return srcImagePath.substring(0, idx) + "_gray" + srcImagePath.substring(idx);
+        return StringUtils.replace(srcImagePath, ServiceConstant.PNG_EXT, ServiceConstant.GRAY_PNG_EXT);
     }
 
     public static void main(String[] args) {
         final String dir = "/Volumes/Unix/awzhan/game/sheep/src/main/resources/images/";
         try (Stream<Path> pathStream = Files.walk(Paths.get(dir), 1)) {
             pathStream.filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(".png"))
-                    .filter(path -> !path.toString().endsWith("_gray.png"))
+                    .filter(path -> StringUtils.endsWith(path.toString(), ServiceConstant.PNG_EXT))
+                    .filter(path -> !StringUtils.endsWith(path.toString(), ServiceConstant.GRAY_PNG_EXT))
                     .forEach(path -> {
                         String grayImageFilename = getGrayImageFilename(path.toString());
                         if (Files.exists(Paths.get(grayImageFilename))) {
