@@ -7,6 +7,8 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 
 @Getter
@@ -45,6 +47,15 @@ public class Brand extends Component {
 
         this.x = 0;
         this.y = 0;
+
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                System.out.println("Mouse clicked");
+                Brand brand = (Brand) event.getSource();
+                brand.getParent().remove(brand);
+            }
+        });
     }
 
     private static Image getImage(final String name, final boolean isGray) {
