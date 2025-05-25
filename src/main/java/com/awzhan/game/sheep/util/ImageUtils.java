@@ -7,12 +7,17 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @UtilityClass
 public class ImageUtils {
 
-    public static void convertToGray(@NonNull final String srcImagePath) {
-        try (final FileInputStream fis = new FileInputStream(srcImagePath)) {
+    public static void convertToGray(@NonNull final String srcImageFilename) {
+        try (final FileInputStream fis = new FileInputStream(srcImageFilename)) {
             final BufferedImage srcImage = ImageIO.read(fis);
             int width = srcImage.getWidth();
             int height = srcImage.getHeight();
@@ -31,9 +36,9 @@ public class ImageUtils {
                 }
             }
 
-            final String dstImagePath = getDstImagePath(srcImagePath);
-            ImageIO.write(dstImage, "png", new File(dstImagePath));
-            System.out.println("New image generated at: " + dstImagePath);
+            final String dstImageFilename = getGrayImageFilename(srcImageFilename);
+            ImageIO.write(dstImage, "png", new File(dstImageFilename));
+            System.out.println("New image generated at: " + dstImageFilename);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,12 +55,27 @@ public class ImageUtils {
         return res;
     }
 
-    private static String getDstImagePath(final String srcImagePath) {
+    private static String getGrayImageFilename(final String srcImagePath) {
         int idx = srcImagePath.lastIndexOf(".");
         return srcImagePath.substring(0, idx) + "_gray" + srcImagePath.substring(idx);
     }
 
     public static void main(String[] args) {
-        convertToGray("/Volumes/Unix/awzhan/game/sheep/src/main/resources/images/wei.png");
+        final String dir = "/Volumes/Unix/awzhan/game/sheep/src/main/resources/images/";
+        try (Stream<Path> pathStream = Files.walk(Paths.get(dir), 1)) {
+            pathStream.filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".png"))
+                    .filter(path -> !path.toString().endsWith("_gray.png"))
+                    .forEach(path -> {
+                        String grayImageFilename = getGrayImageFilename(path.toString());
+                        if (Files.exists(Paths.get(grayImageFilename))) {
+                            System.out.println("Skip " + path);
+                            return;
+                        }
+                        convertToGray(path.toString());
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
