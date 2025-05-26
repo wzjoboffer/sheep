@@ -3,6 +3,7 @@ package com.awzhan.game.sheep.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -26,34 +27,27 @@ public class Brand extends Component {
 
     private final Image grayImage;
 
-    private final int width;
-
-    private final int height;
+    @Setter
+    private int topLeftX;
 
     @Setter
-    private int x;
-
-    @Setter
-    private int y;
+    private int topLeftY;
 
     public Brand(String name) {
         this.name = name;
         this.isGray = false;
 
         this.image = getImage(name, false);
-        this.grayImage = getImage(name, false);
+        this.grayImage = getImage(name, true);
 
-        this.width = 50;
-        this.height = 50;
-
-        this.x = 0;
-        this.y = 0;
+        this.topLeftX = 0;
+        this.topLeftY = 0;
 
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                System.out.println("Mouse clicked");
-                Brand brand = (Brand) event.getSource();
+                final Brand brand = (Brand) event.getSource();
+                System.out.println("Mouse clicked on " + brand.getName());
                 brand.getParent().remove(brand);
             }
         });
@@ -68,7 +62,7 @@ public class Brand extends Component {
     @Override
     public void paint(Graphics graphics) {
         final Image selectedImage = isGray ? grayImage : image;
-        graphics.drawImage(selectedImage, x, y, null);
+        graphics.drawImage(selectedImage, topLeftX, topLeftY, Color.orange, null);
     }
 
     @Override
