@@ -1,6 +1,5 @@
 package com.awzhan.game.sheep.util;
 
-import com.awzhan.game.sheep.ServiceConstant;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
+
+import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
+import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
 
 @UtilityClass
 public class ImageUtils {
@@ -58,19 +60,22 @@ public class ImageUtils {
     }
 
     private static String getGrayImageFilename(final String srcImagePath) {
-        return StringUtils.replace(srcImagePath, ServiceConstant.PNG_EXT, ServiceConstant.GRAY_PNG_EXT);
+        return StringUtils.replace(srcImagePath, PNG_EXT, GRAY_PNG_EXT);
     }
 
-    public static void main(String[] args) {
-        final String dir = "/Volumes/Unix/awzhan/game/sheep/src/main/resources/images/";
+    public static void convertImages(final String dir) {
+        if (!Files.isDirectory(Paths.get(dir))) {
+            throw new IllegalArgumentException(dir + " is not a directory.");
+        }
+
         try (Stream<Path> pathStream = Files.walk(Paths.get(dir), 1)) {
             pathStream.filter(Files::isRegularFile)
-                    .filter(path -> StringUtils.endsWith(path.toString(), ServiceConstant.PNG_EXT))
-                    .filter(path -> !StringUtils.endsWith(path.toString(), ServiceConstant.GRAY_PNG_EXT))
+                    .filter(path -> StringUtils.endsWith(path.toString(), PNG_EXT))
+                    .filter(path -> !StringUtils.endsWith(path.toString(), GRAY_PNG_EXT))
                     .forEach(path -> {
                         String grayImageFilename = getGrayImageFilename(path.toString());
                         if (Files.exists(Paths.get(grayImageFilename))) {
-                            System.out.println("Skip " + path);
+                            System.out.println("Skip " + path + ", because gray image already exists.");
                             return;
                         }
                         convertToGray(path.toString());
@@ -78,5 +83,10 @@ public class ImageUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        final String dir = "/Volumes/Unix/awzhan/game/sheep/src/main/resources/images/";
+        convertImages(dir);
     }
 }

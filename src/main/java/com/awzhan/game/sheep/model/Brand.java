@@ -1,6 +1,5 @@
 package com.awzhan.game.sheep.model;
 
-import com.awzhan.game.sheep.ServiceConstant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,9 +11,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+import static com.awzhan.game.sheep.ServiceConstant.IMAGE_PATH;
+import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+
 @Getter
 public class Brand extends Component {
-    private static final String IMAGE_PATH = "images/";
 
     private final String name;
 
@@ -60,7 +61,7 @@ public class Brand extends Component {
 
     private static Image getImage(final String name, final boolean isGray) {
         final String filename = isGray ? name + "_gray" : name;
-        final URL imageUrl = Brand.class.getClassLoader().getResource(IMAGE_PATH + filename + ServiceConstant.PNG_EXT);
+        final URL imageUrl = Brand.class.getClassLoader().getResource(IMAGE_PATH + filename + PNG_EXT);
         return Toolkit.getDefaultToolkit().getImage(imageUrl);
     }
 
@@ -68,5 +69,10 @@ public class Brand extends Component {
     public void paint(Graphics graphics) {
         final Image selectedImage = isGray ? grayImage : image;
         graphics.drawImage(selectedImage, x, y, null);
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }
