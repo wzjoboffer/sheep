@@ -1,11 +1,11 @@
 package com.awzhan.game.sheep.view;
 
+import javax.swing.JFrame;
+
 import com.awzhan.game.sheep.model.Brand;
 import com.awzhan.game.sheep.model.Cell;
 import com.awzhan.game.sheep.model.Layer;
 import com.awzhan.game.sheep.util.LayerUtils;
-
-import javax.swing.JFrame;
 
 public class Start extends JFrame {
 

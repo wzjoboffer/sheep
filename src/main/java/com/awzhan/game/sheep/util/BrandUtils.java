@@ -1,8 +1,7 @@
 package com.awzhan.game.sheep.util;
 
-import com.awzhan.game.sheep.model.Brand;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.StringUtils;
+import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
+import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,8 +10,11 @@ import java.nio.file.Paths;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
-import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+import com.awzhan.game.sheep.model.Brand;
+
+import org.apache.commons.lang3.StringUtils;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class BrandUtils {

@@ -1,10 +1,8 @@
 package com.awzhan.game.sheep.util;
 
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.StringUtils;
+import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
+import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,9 +11,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
+import javax.imageio.ImageIO;
 
-import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
-import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+import org.apache.commons.lang3.StringUtils;
+
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ImageUtils {

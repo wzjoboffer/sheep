@@ -3,6 +3,7 @@ package com.awzhan.game.sheep.util;
 import com.awzhan.game.sheep.model.Brand;
 import com.awzhan.game.sheep.model.Cell;
 import com.awzhan.game.sheep.model.Layer;
+
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

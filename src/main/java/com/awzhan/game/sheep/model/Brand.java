@@ -1,7 +1,7 @@
 package com.awzhan.game.sheep.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import static com.awzhan.game.sheep.ServiceConstant.IMAGE_PATH;
+import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,8 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-import static com.awzhan.game.sheep.ServiceConstant.IMAGE_PATH;
-import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class Brand extends Component {
