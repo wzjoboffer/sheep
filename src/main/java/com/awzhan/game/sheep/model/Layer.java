@@ -1,6 +1,11 @@
 package com.awzhan.game.sheep.model;
 
+import static com.awzhan.game.sheep.ServiceConstant.RANDOM;
+
+import java.awt.Color;
+
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class Layer {
@@ -9,6 +14,18 @@ public class Layer {
     private final int capacity;
     private int size;
     private final Cell[][] matrix;
+
+    @Setter
+    private int offsetX;
+    @Setter
+    private int offsetY;
+    @Setter
+    private Color bgColor;
+
+    private static int[] OFFSET = {25, 50, 75, 100, 125, 150};
+    private static Color[] BG_COLOR = {
+            Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.orange, Color.pink,  Color.yellow
+    };
 
     public Layer(int rowNum, int colNum) {
         this.capacity = rowNum * colNum;
@@ -20,6 +37,10 @@ public class Layer {
         this.colNum = colNum;
         this.size = 0;
         this.matrix = new Cell[rowNum][colNum];
+
+        this.offsetX = OFFSET[RANDOM.nextInt(OFFSET.length)];
+        this.offsetY = OFFSET[RANDOM.nextInt(OFFSET.length)];
+        this.bgColor = BG_COLOR[RANDOM.nextInt(BG_COLOR.length)];
     }
 
     public void printMatrix() {

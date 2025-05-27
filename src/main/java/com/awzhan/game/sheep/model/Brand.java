@@ -28,6 +28,9 @@ public class Brand extends Component {
     private final Image grayImage;
 
     @Setter
+    private Color bgColor;
+
+    @Setter
     private int topLeftX;
 
     @Setter
@@ -62,7 +65,7 @@ public class Brand extends Component {
     @Override
     public void paint(Graphics graphics) {
         final Image selectedImage = isGray ? grayImage : image;
-        graphics.drawImage(selectedImage, topLeftX, topLeftY, Color.orange, null);
+        graphics.drawImage(selectedImage, topLeftX, topLeftY, bgColor, null);
     }
 
     @Override

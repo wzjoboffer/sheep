@@ -43,8 +43,8 @@ public class StartGame extends JFrame {
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
                 final Brand brand = matrix[row][col].getBrand();
-                int x = col * 50;
-                int y = row * 50;
+                int x = col * 50 + layer.getOffsetX();
+                int y = row * 50 + layer.getOffsetY();
                 brand.setBounds(x, y, 50, 50);
                 this.getContentPane().add(brand);
             }

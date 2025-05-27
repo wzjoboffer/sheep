@@ -12,7 +12,7 @@ public class LayerUtils {
     public static Layer buildLayer(final int rowNum, final int colNum) {
         final Layer layer = new Layer(rowNum, colNum);
         final Cell[][] matrix = layer.getMatrix();
-        final Brand[] brands = BrandUtils.buildBrands(layer.getCapacity());
+        final Brand[] brands = BrandUtils.buildBrands(layer.getCapacity(), layer.getBgColor());
 
         int i = 0;
         for (int row = 0; row < matrix.length; row++) {

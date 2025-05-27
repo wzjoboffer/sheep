@@ -15,7 +15,7 @@ public class GameMapUtils {
     public static GameMap buildGameMap(final int level) {
         List<Layer> layers = new ArrayList<>();
         for (int i = 0; i < level; i++) {
-            final Layer layer = LayerUtils.buildLayer(3, 3);
+            final Layer layer = LayerUtils.buildLayer(6, 6);
             layers.add(layer);
         }
         layers = Collections.unmodifiableList(layers);

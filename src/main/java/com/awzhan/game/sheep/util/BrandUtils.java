@@ -2,12 +2,13 @@ package com.awzhan.game.sheep.util;
 
 import static com.awzhan.game.sheep.ServiceConstant.GRAY_PNG_EXT;
 import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+import static com.awzhan.game.sheep.ServiceConstant.RANDOM;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Random;
 import java.util.stream.Stream;
 
 import com.awzhan.game.sheep.model.Brand;
@@ -18,8 +19,6 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class BrandUtils {
-    private static final Random random = new Random();
-
     private static final String[] brandNames = {
         "apple", "broccoli", "cabbage", "carrots", "cherries",
         "crab", "dynamodb", "ec2", "eggplant", "flamingo",
@@ -29,11 +28,11 @@ public class BrandUtils {
     };
 
     public static String getRandomBrandName() {
-        int idx = random.nextInt(brandNames.length);
+        int idx = RANDOM.nextInt(brandNames.length);
         return brandNames[idx];
     }
 
-    public static Brand[] buildBrands(final int capacity) {
+    public static Brand[] buildBrands(final int capacity, final Color bgColor) {
         final Brand[] brands = new Brand[capacity];
 
         int i = 0;
@@ -43,12 +42,15 @@ public class BrandUtils {
             brands[i++] = new Brand(brandName);
             brands[i++] = new Brand(brandName);
         }
+        for (Brand brand : brands) {
+            brand.setBgColor(bgColor);
+        }
         return shuffle(brands);
     }
 
     public static Brand[] shuffle(final Brand[] brands) {
         for (int i = brands.length - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
+            int j = RANDOM.nextInt(i + 1);
 
             Brand temp = brands[i];
             brands[i] = brands[j];
