@@ -4,15 +4,16 @@ import javax.swing.JFrame;
 
 import com.awzhan.game.sheep.model.Brand;
 import com.awzhan.game.sheep.model.Cell;
+import com.awzhan.game.sheep.model.GameMap;
 import com.awzhan.game.sheep.model.Layer;
-import com.awzhan.game.sheep.util.LayerUtils;
+import com.awzhan.game.sheep.util.GameMapUtils;
 
-public class Start extends JFrame {
+public class StartGame extends JFrame {
 
-    public Start() {
+    public StartGame() {
         init();
 
-        renderLayer();
+        renderGameMap();
 
         autoRefresh();
     }
@@ -20,18 +21,24 @@ public class Start extends JFrame {
     private void init() {
         this.setTitle("Sheep Game");
         this.setSize(450, 800);
+        
+        this.setLayout(null);
+        this.setBounds(0, 0, 450, 800);
 
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setLayout(null);
-        this.setBounds(0, 0, 450, 800);
-
         this.setVisible(true);
     }
 
-    private void renderLayer() {
-        final Layer layer = LayerUtils.buildLayer(6, 6);
+    private void renderGameMap() {
+        final GameMap gameMap = GameMapUtils.buildGameMap(3);
+        for (final Layer layer : gameMap.getLayers()) {
+            renderLayer(layer);
+        }
+    }
+
+    private void renderLayer(final Layer layer) {
         final Cell[][] matrix = layer.getMatrix();
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
@@ -58,6 +65,6 @@ public class Start extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Start();
+        new StartGame();
     }
 }
