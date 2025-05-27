@@ -20,11 +20,10 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class BrandUtils {
     private static final String[] brandNames = {
-        "apple", "broccoli", "cabbage", "carrots", "cherries",
-        "crab", "dynamodb", "ec2", "eggplant", "flamingo",
-        "grape", "iam", "jellyfish", "juice", "lambda",
-        "livestock", "mouse", "potato", "sqs", "turtle",
-        "watermelon"
+            "apple", "barbeque", "broccoli", "cabbage", "carrots",
+            "cherries", "crab", "eggplant", "flamingo", "gardening",
+            "grape", "home", "jellyfish", "juice", "livestock",
+            "mouse", "potato", "turtle", "watering", "watermelon"
     };
 
     public static String getRandomBrandName() {
