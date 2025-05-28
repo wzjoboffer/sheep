@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import com.awzhan.game.sheep.model.Brand;
+import com.awzhan.game.sheep.model.Cell;
+import com.awzhan.game.sheep.model.Layer;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -56,6 +58,28 @@ public class BrandUtils {
             brands[j] = temp;
         }
         return brands;
+    }
+
+    public static boolean intersects(final Brand brand, final Layer layer) {
+        if (layer == null) {
+            return false;
+        }
+
+        final Cell[][] matrix = layer.getMatrix();
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                if (matrix[row][col].getState() == 0) {
+                    continue;
+                }
+
+                final Brand other = matrix[row][col].getBrand();
+                if (brand.getBounds().intersects(other.getBounds())) {
+                    return true;
+                }
+            }
+        }
+
+        return intersects(brand, layer.getParent());
     }
 
     public static void printAllBrandNames(final String dir) {

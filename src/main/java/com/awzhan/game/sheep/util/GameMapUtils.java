@@ -14,9 +14,14 @@ public class GameMapUtils {
 
     public static GameMap buildGameMap(final int level) {
         List<Layer> layers = new ArrayList<>();
-        for (int i = 0; i < level; i++) {
+        int i = 0;
+        while (i < level) {
             final Layer layer = LayerUtils.buildLayer(6, 6);
+            if (i > 0) {
+                layer.setParent(layers.get(i-1));
+            }
             layers.add(layer);
+            i++;
         }
         layers = Collections.unmodifiableList(layers);
 

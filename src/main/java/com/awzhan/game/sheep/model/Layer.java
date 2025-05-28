@@ -9,10 +9,17 @@ import lombok.Setter;
 
 @Getter
 public class Layer {
+    private static int[] OFFSET = {25, 50, 75, 100, 125, 150};
+    private static Color[] BG_COLOR = {
+            Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.orange, Color.pink,  Color.yellow
+    };
+
     private final int rowNum;
     private final int colNum;
+
     private final int capacity;
     private int size;
+
     private final Cell[][] matrix;
 
     @Setter
@@ -21,11 +28,8 @@ public class Layer {
     private int offsetY;
     @Setter
     private Color bgColor;
-
-    private static int[] OFFSET = {25, 50, 75, 100, 125, 150};
-    private static Color[] BG_COLOR = {
-            Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.orange, Color.pink,  Color.yellow
-    };
+    @Setter
+    private Layer parent;
 
     public Layer(int rowNum, int colNum) {
         this.capacity = rowNum * colNum;
