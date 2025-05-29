@@ -18,7 +18,10 @@ public class LayerUtils {
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
                 final Brand brand = brands[i++];
-                matrix[row][col] = new Cell(brand);
+                final Cell cell = new Cell(brand);
+                cell.setLayer(layer);
+                brand.setCell(cell);
+                matrix[row][col] = cell;
             }
         }
         return layer;

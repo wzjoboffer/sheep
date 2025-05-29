@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+import com.awzhan.game.sheep.util.GameMapUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +38,9 @@ public class Brand extends Component {
     @Setter
     private int topLeftY;
 
+    @Setter
+    private Cell cell;
+
     public Brand(String name) {
         this.name = name;
         this.isGray = false;
@@ -53,6 +58,13 @@ public class Brand extends Component {
                 System.out.println("Mouse clicked on " + brand.getName());
                 if (!brand.isGray()) {
                     brand.getParent().remove(brand);
+
+                    final Cell cell = brand.getCell();
+                    cell.setState(0);
+                    cell.setBrand(null);
+
+                    // intersectsAll
+                    GameMapUtils.refreshAll(brand.getCell().getLayer().getGameMap());
                 }
             }
         });

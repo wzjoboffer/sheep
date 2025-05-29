@@ -60,7 +60,7 @@ public class BrandUtils {
         return brands;
     }
 
-    public static boolean intersects(final Brand brand, final Layer layer) {
+    public static boolean refresh(final Brand brand, final Layer layer) {
         if (layer == null) {
             return false;
         }
@@ -79,7 +79,7 @@ public class BrandUtils {
             }
         }
 
-        return intersects(brand, layer.getParent());
+        return refresh(brand, layer.getParent());
     }
 
     public static void printAllBrandNames(final String dir) {

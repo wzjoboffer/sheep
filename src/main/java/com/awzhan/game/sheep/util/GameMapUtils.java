@@ -31,7 +31,8 @@ public class GameMapUtils {
         return gameMap;
     }
 
-    public static void intersectsAll(final GameMap gameMap) {
+    public static void refreshAll(final GameMap gameMap) {
+        System.out.println("refreshAll() is called");
         final List<Layer> layers = gameMap.getLayers();
         for (int i = 1; i < layers.size(); i++) {
             final Layer layer = layers.get(i);
@@ -43,7 +44,7 @@ public class GameMapUtils {
                         continue;
                     }
                     final Brand brand = cell.getBrand();
-                    boolean res = BrandUtils.intersects(brand, layer.getParent());
+                    boolean res = BrandUtils.refresh(brand, layer.getParent());
                     brand.setGray(res);
                 }
             }

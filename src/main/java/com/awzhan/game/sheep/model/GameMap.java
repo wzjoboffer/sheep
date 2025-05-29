@@ -24,5 +24,10 @@ public class GameMap {
 
         this.level = level;
         this.layers = layers;
+        if (layers != null) {
+            for (Layer layer : layers) {
+                layer.setGameMap(this);
+            }
+        }
     }
 }

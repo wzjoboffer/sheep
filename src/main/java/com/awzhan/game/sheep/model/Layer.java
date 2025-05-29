@@ -30,6 +30,8 @@ public class Layer {
     private Color bgColor;
     @Setter
     private Layer parent;
+    @Setter
+    private GameMap gameMap;
 
     public Layer(int rowNum, int colNum) {
         this.capacity = rowNum * colNum;
