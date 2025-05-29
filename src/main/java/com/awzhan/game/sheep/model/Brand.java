@@ -51,7 +51,9 @@ public class Brand extends Component {
             public void mouseClicked(MouseEvent event) {
                 final Brand brand = (Brand) event.getSource();
                 System.out.println("Mouse clicked on " + brand.getName());
-                brand.getParent().remove(brand);
+                if (!brand.isGray()) {
+                    brand.getParent().remove(brand);
+                }
             }
         });
     }

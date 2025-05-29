@@ -36,6 +36,7 @@ public class StartGame extends JFrame {
         for (final Layer layer : gameMap.getLayers()) {
             renderLayer(layer);
         }
+        GameMapUtils.intersectsAll(gameMap);
     }
 
     private void renderLayer(final Layer layer) {
