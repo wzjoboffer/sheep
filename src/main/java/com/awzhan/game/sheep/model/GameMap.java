@@ -12,12 +12,15 @@ public class GameMap {
 
     private final List<Layer> layers;
 
+    private final EliminateBox eliminateBox;
+
     public GameMap(int level) {
         this.level = level;
         this.layers = new ArrayList<>(level);
+        this.eliminateBox = new EliminateBox();
     }
 
-    public GameMap(int level, List<Layer> layers) {
+    public GameMap(int level, List<Layer> layers, EliminateBox eliminateBox) {
         if (level != layers.size()) {
             throw new IllegalArgumentException("level is not equal to the size of layers");
         }
@@ -29,5 +32,6 @@ public class GameMap {
                 layer.setGameMap(this);
             }
         }
+        this.eliminateBox = eliminateBox;
     }
 }

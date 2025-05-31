@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.awzhan.game.sheep.model.Brand;
 import com.awzhan.game.sheep.model.Cell;
+import com.awzhan.game.sheep.model.EliminateBox;
 import com.awzhan.game.sheep.model.GameMap;
 import com.awzhan.game.sheep.model.Layer;
 
@@ -27,7 +28,9 @@ public class GameMapUtils {
         }
         layers = Collections.unmodifiableList(layers);
 
-        final GameMap gameMap = new GameMap(layers.size(), layers);
+        final EliminateBox eliminateBox = new EliminateBox();
+
+        final GameMap gameMap = new GameMap(layers.size(), layers, eliminateBox);
         return gameMap;
     }
 

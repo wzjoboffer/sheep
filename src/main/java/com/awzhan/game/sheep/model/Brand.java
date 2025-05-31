@@ -57,7 +57,9 @@ public class Brand extends Component {
                 final Brand brand = (Brand) event.getSource();
                 System.out.println("Mouse clicked on " + brand.getName());
                 if (!brand.isGray()) {
-                    brand.getParent().remove(brand);
+                    // brand.getParent().remove(brand);
+                    final EliminateBox eliminateBox = brand.getCell().getLayer().getGameMap().getEliminateBox();
+                    eliminateBox.addToSlots(brand);
 
                     final Cell cell = brand.getCell();
                     cell.setState(0);
