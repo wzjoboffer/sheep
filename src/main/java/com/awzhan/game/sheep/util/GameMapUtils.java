@@ -19,7 +19,7 @@ public class GameMapUtils {
         List<Layer> layers = new ArrayList<>();
         int i = 0;
         while (i < level) {
-            final Layer layer = LayerUtils.buildLayer(6, 6);
+            final Layer layer = LayerUtils.buildLayer(6, 5);
             if (i > 0) {
                 layer.setParent(layers.get(i-1));
             }
