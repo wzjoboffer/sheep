@@ -7,6 +7,7 @@ import com.awzhan.game.sheep.model.Cell;
 import com.awzhan.game.sheep.model.GameMap;
 import com.awzhan.game.sheep.model.Layer;
 import com.awzhan.game.sheep.util.GameMapUtils;
+import com.awzhan.game.sheep.util.MusicUtil;
 
 public class StartGame extends JFrame {
 
@@ -16,6 +17,8 @@ public class StartGame extends JFrame {
         renderGameMap();
 
         autoRefresh();
+
+        MusicUtil.play("");
     }
 
     private void init() {
