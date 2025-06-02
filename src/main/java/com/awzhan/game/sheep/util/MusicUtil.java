@@ -1,14 +1,10 @@
 package com.awzhan.game.sheep.util;
 
-import static com.awzhan.game.sheep.ServiceConstant.IMAGE_PATH;
-import static com.awzhan.game.sheep.ServiceConstant.PNG_EXT;
+import static com.awzhan.game.sheep.ServiceConstant.MUSIC_PATH;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-
-import com.awzhan.game.sheep.model.Brand;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
@@ -18,8 +14,8 @@ import lombok.experimental.UtilityClass;
 public class MusicUtil {
 
     public static void play(final String filename) {
-        final String filePath = Brand.class.getClassLoader().getResource(filename).toString();
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filePath))) {
+        final URL fileUrl = MusicUtil.class.getClassLoader().getResource(MUSIC_PATH + filename);
+        try (BufferedInputStream bis = new BufferedInputStream(fileUrl.openStream())) {
             Player player = new Player(bis);
             player.play();
         } catch (IOException | JavaLayerException e) {

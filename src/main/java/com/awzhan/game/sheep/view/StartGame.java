@@ -18,7 +18,7 @@ public class StartGame extends JFrame {
 
         autoRefresh();
 
-        MusicUtil.play("");
+        MusicUtil.play("sheep_music.mp3");
     }
 
     private void init() {
